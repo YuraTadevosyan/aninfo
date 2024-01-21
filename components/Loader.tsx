@@ -1,22 +1,22 @@
 'use client'
 
-import { useEffect } from 'react';
-import Image from 'next/image';
+import { useEffect } from 'react'
+import Image from 'next/image'
 import { useInView } from 'react-intersection-observer'
 
 interface Prop {
-	page: number;
-	onPage: (page: number) => void;
+	page: number
+	onPage: (page: number) => void
 }
 
 function LoadMore ({ page, onPage}: Prop) {
-	const { ref, inView } = useInView();
+	const { ref, inView } = useInView()
 	
 	useEffect(() => {
 		if (inView) {
-			onPage(page + 1);
+			onPage(page + 1)
 		}
-	}, [inView]);
+	}, [inView])
 	
 	return (
 		<>
@@ -32,7 +32,7 @@ function LoadMore ({ page, onPage}: Prop) {
 				</div>
 			</section>
 		</>
-	);
+	)
 }
 
-export default LoadMore;
+export default LoadMore

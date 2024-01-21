@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from 'next/image'
 
 function Header() {
 	return (
@@ -20,7 +20,7 @@ function Header() {
 				<Image src="/hero.webp" alt="anime" fill className="object-contain" />
 			</div>
 		</header>
-	);
+	)
 }
 
-export default Header;
+export default Header

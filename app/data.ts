@@ -1,4 +1,4 @@
-import {AnimeProp} from "@/components/AnimeCard/types";
+import { AnimeProp } from '@/components/AnimeCard/types'
 
 // @ts-ignore
 export const data: AnimeProp[] = [

@@ -4,11 +4,12 @@ import Image from 'next/image'
 import { MotionDiv } from '@/components'
 
 // Types
-import { AnimeProp } from './types';
+import { AnimeProp } from './types'
 
 interface Prop {
-	anime: AnimeProp;
-	delayIndex: number;
+	anime: AnimeProp
+	delayIndex: number
+	onClick: () => void
 }
 
 const variants = {
@@ -16,7 +17,7 @@ const variants = {
 	visible: { opacity: 1 },
 }
 
-const AnimeCard = ({ anime, delayIndex }: Prop) => {
+const AnimeCard = ({ anime, delayIndex, onClick }: Prop) => {
 	return (
 		<MotionDiv
 			variants={variants}
@@ -28,7 +29,8 @@ const AnimeCard = ({ anime, delayIndex }: Prop) => {
 				duration: 0.5
 			}}
 			viewport={{ amount: 0 }}
-			className="max-w-sm rounded relative w-full"
+			className="max-w-sm rounded relative w-full cursor-pointer"
+			onClick={onClick}
 		>
 			<div className="relative w-full h-[37vh]">
 				<Image
@@ -59,7 +61,7 @@ const AnimeCard = ({ anime, delayIndex }: Prop) => {
 							className="object-contain"
 						/>
 						<p className="text-base text-white font-bold">
-							{anime.episodes}
+							{anime.episodes || 'Ongoing'}
 						</p>
 					</div>
 					<div className="flex flex-row gap-2 items-center">
@@ -75,7 +77,7 @@ const AnimeCard = ({ anime, delayIndex }: Prop) => {
 				</div>
 			</div>
 		</MotionDiv>
-	);
+	)
 }
 
-export default AnimeCard;
+export default AnimeCard

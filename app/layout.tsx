@@ -3,7 +3,7 @@ import { Roboto_Condensed } from 'next/font/google'
 import './globals.css'
 
 // Components
-import { Header, Footer } from '@/components'
+import { Footer } from '@/components'
 
 const robotoCondensed = Roboto_Condensed({ subsets: ['latin'] })
 
@@ -19,15 +19,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={robotoCondensed.className}>
-				<Header />
-			
-				<main className="container mx-auto flex flex-col items-center justify-between py-24">
-					{children}
-				</main>
-			
-				<Footer />
-			</body>
-    </html>
-  )
+		<body className={robotoCondensed.className}>
+		<main className="container mx-auto flex flex-col items-center justify-between min-h-screen">
+			{children}
+		</main>
+		
+		<Footer/>
+		</body>
+		</html>
+	)
 }

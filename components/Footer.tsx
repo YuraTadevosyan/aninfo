@@ -1,8 +1,8 @@
-import Image from "next/image";
+import Image from 'next/image'
 
 function Footer() {
 	return (
-		<footer className="sm:px-16 py-4 px-8">
+		<footer className="w-full bottom-0 fixed flex justify-center bg-[#000000e6] sm:px-16 py-4 px-8">
 			<div className="container flex justify-between items-center gap-2 flex-wrap ">
 				<p className="text-base font-bold text-white">@{new Date().getFullYear()} AnInfo</p>
 				<Image
@@ -37,7 +37,7 @@ function Footer() {
 				</div>
 			</div>
 		</footer>
-	);
+	)
 }
 
-export default Footer;
+export default Footer

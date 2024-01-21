@@ -1,6 +1,6 @@
-import Image from "next/image";
+import Image from 'next/image'
 
-const Skeleton = () => {
+const AnimeCardSkeleton = () => {
 	return (
 		<div role="status" className="block w-sm rounded relative w-full animate-pulse">
 			<div className="relative w-full h-[37vh] bg-gray-700 rounded-xl"/>
@@ -40,4 +40,4 @@ const Skeleton = () => {
 	)
 }
 
-export default Skeleton
+export default AnimeCardSkeleton

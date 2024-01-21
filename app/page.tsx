@@ -3,7 +3,10 @@ import { useState, useEffect } from 'react'
 import { data } from './data'
 
 // Components
-import { AnimeCard, Loader, Skeleton } from '@/components'
+import { AnimeCard, Header, Loader, AnimeCardSkeleton } from '@/components'
+
+// Hooks
+import { useRouter } from 'next/navigation'
 
 // Action
 import { fetchAnime } from './action'
@@ -12,7 +15,9 @@ import { fetchAnime } from './action'
 import { AnimeProp } from '@/components/AnimeCard/types'
 
 export default function Home() {
-	const [loading, setLoading] = useState<boolean>(true);
+	const router = useRouter()
+	
+	const [loading, setLoading] = useState<boolean>(true)
 	const [page, setPage] = useState<number>(1)
 	const [hasNextPage, setHasNextPage] = useState<boolean>(true)
 	const [data, setData] = useState<AnimeProp[]>([])
@@ -30,18 +35,28 @@ export default function Home() {
 		}
 		
 		fetchAnimes()
-	}, [page]);
+	}, [page])
 	
   return (
-		<div className="w-full flex flex-col place-items-center">
-			<h2 className="text-3xl text-white font-bold">Explore Anime</h2>
+		<>
+			<Header/>
 			
-			<section className="w-full grid lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-10 my-10">
-				{data.map((item: AnimeProp, index) => <AnimeCard key={index} anime={item} delayIndex={Math.floor(index - (page - 1) * 25)}/> )}
-				{loading && Array.from(Array(25)).map((el, index) => <Skeleton key={index} />)}
-			</section>
-			
-			{hasNextPage && !loading && <Loader page={page} onPage={setPage}/>}
-		</div>
+			<div className="w-full flex flex-col place-items-center">
+				<h2 className="text-3xl text-white font-bold">Explore Anime</h2>
+				
+				<section className="w-full grid lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-10 my-10">
+					{data.map((item: AnimeProp, index) =>
+						<AnimeCard
+							key={index} anime={item}
+							delayIndex={Math.floor(index - (page - 1) * 25)}
+							onClick={() => router.push(`/${item.mal_id}`)}
+						/>
+					)}
+					{loading && Array.from(Array(25)).map((el, index) => <AnimeCardSkeleton key={index}/>)}
+				</section>
+				
+				{hasNextPage && !loading && <Loader page={page} onPage={setPage}/>}
+			</div>
+		</>
 	)
 }
